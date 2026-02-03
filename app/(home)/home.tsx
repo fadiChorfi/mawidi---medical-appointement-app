@@ -80,6 +80,10 @@ export const doctors: Doctor[] = [
     image: require("../../assets/images/doc1.png"),
     numberOfReviews: 150,
     isFav: true,
+    numOfPatients: 1500,
+    yearsOfExperience: 10,
+    about:
+      "Dr. Sarah Johnson is a board-certified cardiologist with over 10 years of experience in treating heart conditions. She specializes in preventive cardiology and heart failure management.",
   },
   {
     id: 2,
@@ -89,6 +93,10 @@ export const doctors: Doctor[] = [
     image: require("../../assets/images/doc2.png"),
     numberOfReviews: 120,
     isFav: true,
+    numOfPatients: 1200,
+    yearsOfExperience: 8,
+    about:
+      "Dr. Emily Chen is an experienced neurologist specializing in headache disorders, epilepsy, and neurodegenerative diseases. She is dedicated to providing compassionate care to her patients.",
   },
   {
     id: 3,
@@ -98,6 +106,10 @@ export const doctors: Doctor[] = [
     image: require("../../assets/images/doc2.png"),
     numberOfReviews: 120,
     isFav: false,
+    numOfPatients: 980,
+    yearsOfExperience: 6,
+    about:
+      "With 6 years of expertise in neurology, Dr. Chen focuses on stroke prevention, movement disorders, and cognitive assessments. She believes in a patient-centered approach to healthcare.",
   },
   {
     id: 4,
@@ -107,6 +119,10 @@ export const doctors: Doctor[] = [
     image: require("../../assets/images/doc1.png"),
     numberOfReviews: 120,
     isFav: false,
+    numOfPatients: 2000,
+    yearsOfExperience: 12,
+    about:
+      "Dr. Sarah Johnson has 12 years of experience in cardiology, specializing in interventional procedures and cardiac rehabilitation. She is committed to helping patients achieve optimal heart health.",
   },
 ];
 

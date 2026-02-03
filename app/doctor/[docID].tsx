@@ -1,13 +1,55 @@
+import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import { useState } from "react";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { doctors } from "../(home)/home";
 
+const IconFamilies = {
+  Feather,
+  FontAwesome6,
+  Ionicons,
+  MaterialCommunityIcons,
+  Entypo,
+} as const;
+
+type IconFamily = keyof typeof IconFamilies;
+
+const stats = [
+  {
+    icon: "users",
+    label: "Patients",
+    value: "numOfPatients",
+    family: "Feather" as IconFamily,
+  },
+  {
+    icon: "arrow-trend-up",
+    label: "Experience",
+    value: "yearsOfExperience",
+    family: "FontAwesome6" as IconFamily,
+  },
+  {
+    icon: "star-outlined",
+    label: "Rating",
+    value: "rating",
+    family: "Entypo" as IconFamily,
+  },
+  {
+    icon: "message-text-outline",
+    label: "Reviews",
+    value: "numberOfReviews",
+    family: "MaterialCommunityIcons" as IconFamily,
+  },
+];
+
 export default function DoctorPage() {
   const { docID } = useLocalSearchParams<{ docID: string }>();
+  const [expanded, setExpanded] = useState(false);
+
   const doctor = doctors.find((doc) => doc.id === Number(docID));
 
   if (!doctor) {
@@ -19,7 +61,7 @@ export default function DoctorPage() {
   }
 
   return (
-    <View className="flex-1 bg-gray-100">
+    <View className="flex-1 bg-white">
       <Stack.Screen
         options={{
           title: "My Appointment",
@@ -31,102 +73,85 @@ export default function DoctorPage() {
 
       <SafeAreaView edges={["top"]} />
 
-      {/* Doctor Image Card */}
-      <View className="mx-4 mt-16 bg-[#E8E8F4] rounded-3xl overflow-hidden">
-        <View className="items-center pt-4">
+      <View className=" flex flex-col gap-9 w-full h-full pt-20 px-6 ">
+        <View className="flex flex-col items-center  rounded-md  overflow-hidden  shadow-2xs ">
           <Image
-            source={doctor.image}
-            className="w-full h-48"
-            resizeMode="contain"
+            source={require("../../assets/images/doc3.png")}
+            className=" w-full h-64 object-cover "
           />
-        </View>
 
-        {/* Name, Specialty & Rating */}
-        <View className="bg-white px-4 py-4">
-          <View className="flex-row justify-between items-start">
-            <View className="flex-1">
-              <Text className="text-xl font-bold text-gray-900">
+          <View className="flex flex-row justify-between items-center w-full  bg-white">
+            <View className="flex flex-col">
+              <Text className="text-lg font-bold text-gray-800 mt-4 ml-4">
                 {doctor.name}
               </Text>
-              <Text className="text-sm text-gray-500 mt-1">
-                {doctor.specialty} | Vcare Clinic
+              <Text className="text-md text-gray-600 ml-4 mb-4">
+                {doctor.specialty}
               </Text>
             </View>
-            <View className="flex-row items-center bg-yellow-50 px-2 py-1 rounded-lg">
-              <Text className="text-yellow-500">⭐</Text>
-              <Text className="text-sm font-semibold text-gray-700 ml-1">
-                {doctor.rating}
-              </Text>
-              <Text className="text-xs text-gray-400 ml-1">
-                ({doctor.numberOfReviews} reviews)
+            <View>
+              <Text className="text-md  font-semibold mr-4">
+                ⭐{doctor.rating} - {doctor.numberOfReviews} Reviews
               </Text>
             </View>
           </View>
         </View>
-      </View>
 
-      {/* Stats Row */}
-      <View className="flex-row justify-around mx-4 mt-6 py-4 bg-white rounded-2xl">
-        <View className="items-center">
-          <View className="bg-[#E8E8F4] p-3 rounded-full mb-2">
-            <MaterialCommunityIcons
-              name="account-group-outline"
-              size={24}
-              color="#3D3EB0"
-            />
-          </View>
-          <Text className="text-lg font-bold text-gray-900">
-            {doctor.numberOfReviews || 120}+
-          </Text>
-          <Text className="text-xs text-gray-500">Patients</Text>
-        </View>
-        <View className="items-center">
-          <View className="bg-[#E8E8F4] p-3 rounded-full mb-2">
-            <Feather name="award" size={24} color="#3D3EB0" />
-          </View>
-          <Text className="text-lg font-bold text-gray-900">7+</Text>
-          <Text className="text-xs text-gray-500">Years Exp</Text>
-        </View>
-        <View className="items-center">
-          <View className="bg-[#E8E8F4] p-3 rounded-full mb-2">
-            <Ionicons name="star-outline" size={24} color="#3D3EB0" />
-          </View>
-          <Text className="text-lg font-bold text-gray-900">
-            {doctor.rating}
-          </Text>
-          <Text className="text-xs text-gray-500">Rating</Text>
-        </View>
-        <View className="items-center">
-          <View className="bg-[#E8E8F4] p-3 rounded-full mb-2">
-            <MaterialCommunityIcons
-              name="message-text-outline"
-              size={24}
-              color="#3D3EB0"
-            />
-          </View>
-          <Text className="text-lg font-bold text-gray-900">100+</Text>
-          <Text className="text-xs text-gray-500">Reviews</Text>
-        </View>
-      </View>
+        <View className="flex-row justify-between gap-3 ">
+          {stats.map((item, index) => {
+            const IconComponent = IconFamilies[item.family];
+            const value = doctor[item.value as keyof typeof doctor];
+            return (
+              <View key={index} className="items-center text-center">
+                <View className="w-16 h-16 rounded-full bg-slate-100 justify-center items-center mb-2">
+                  <IconComponent
+                    name={item.icon as any}
+                    size={24}
+                    color="#3D3EB0"
+                  />{" "}
+                </View>
 
-      {/* About Me Section */}
-      <ScrollView className="flex-1 mx-4 mt-6">
-        <Text className="text-lg font-semibold text-gray-900">About Me</Text>
-        <Text className="text-gray-500 mt-2 leading-6">
-          {doctor.name} is the top most {doctor.specialty.toLowerCase()}{" "}
-          specialist in Crist Hospital in London, UK.{" "}
-          <Text className="text-[#3D3EB0]">Read More...</Text>
-        </Text>
-      </ScrollView>
+                <Text className="text-black text-lg font-semibold text-center">
+                  {value}
+                  {item.value !== "rating" && " +"}
+                </Text>
+                <Text className="text-black/40 text-center text-sm">
+                  {item.label}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
 
-      {/* Book Appointment Button */}
-      <View className="px-4 pb-8">
-        <Pressable className="bg-[#3D3EB0] py-4 rounded-2xl flex-row items-center justify-center">
-          <Feather name="phone-call" size={20} color="white" />
-          <Text className="text-white font-semibold text-base ml-2">
-            Voice Call (14.30 - 15.00 PM)
+        <View className="flex flex-col gap-2">
+          <Text className="text-2xl text-black font-semibold  ">About Me</Text>
+          <View className="text-left">
+            <Text
+              className="text-gray-700 text-base leading-relaxed"
+              numberOfLines={expanded ? undefined : 2}
+              ellipsizeMode="tail"
+            >
+              {doctor.about}
+            </Text>
+
+            <Text
+              className="text-[#3D3EB0] text-sm font-medium mt-1"
+              onPress={() => setExpanded(!expanded)}
+            >
+              {expanded ? "Read less" : "Read more"}
+            </Text>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          activeOpacity={0.7}
+          className="bg-[#4C4DDC] py-3 rounded-lg items-center"
+          onPress={() => console.log("call")}
+        >
+          <Text className="text-white font-semibold text-base">
+            Voice Call (14:30 - 15:00 PM)
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );
