@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { PageIndicator } from "react-native-page-indicator";
@@ -28,20 +29,20 @@ const onboardings: OnboardingType[] = [
       "Schedule appointments with just a few taps. Get reminders and manage your health journey effortlessly.",
   },
 ];
+export const logged = false;
 
 export default function Index() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  /* const router = useRouter(); */
-  const logged = true;
+  const router = useRouter();
   if (logged) {
-    /*  router.replace("/(home)/calendar"); */
+    router.replace("/(home)/calendar");
   }
   const item = onboardings[currentIndex];
   const handleNext = () => {
     if (currentIndex < onboardings.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else {
-      /* router.replace("/(home)/home"); */
+      router.replace("/(home)/home");
       console.log("Onboarding finished");
     }
   };

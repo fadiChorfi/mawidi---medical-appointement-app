@@ -1,8 +1,9 @@
 import { Redirect, Stack } from "expo-router";
+import { logged } from "./index";
 
 export default function RootLayout() {
-  const logged = true;
-  if (logged) {
+  const useLogged = logged;
+  if (useLogged) {
     return <Redirect href={"/(home)/home"} />;
   }
   return <Stack screenOptions={{ headerShown: false }} />;
