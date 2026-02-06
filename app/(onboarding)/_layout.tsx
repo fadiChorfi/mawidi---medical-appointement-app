@@ -1,4 +1,5 @@
 import { Redirect, Stack } from "expo-router";
+import { StatusBar } from "react-native";
 import { logged } from "./index";
 
 export default function RootLayout() {
@@ -6,5 +7,9 @@ export default function RootLayout() {
   if (useLogged) {
     return <Redirect href={"/(home)/home"} />;
   }
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <StatusBar translucent />
+    </Stack>
+  );
 }

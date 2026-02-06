@@ -11,6 +11,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
@@ -18,13 +19,13 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-type Category = {
+export type Category = {
   id: number;
   name: string;
   icon: React.ReactNode;
 };
 
-const categories: Category[] = [
+export const categories: Category[] = [
   {
     id: 1,
     name: "Dentist",
@@ -130,11 +131,13 @@ function Home() {
   const router = useRouter();
   return (
     <View className="flex-1 bg-white">
+      <StatusBar translucent />
+
       <SafeAreaView edges={["top"]}>
-        <View className="w-full py-6 bg-[#3D3EB0] rounded-b-4xl">
-          <View className="flex-row justify-between items-center ">
-            <View className="flex-col ">
-              <View className="flex-row gap-4 items-center px-6 py-4 mt-4">
+        <View className="flex flex-col gap-5 w-full py-6 bg-[#3D3EB0]  relative ">
+          <View className="flex-row justify-between items-center px-5 ">
+            <View className="flex-col  ">
+              <View className="flex-row gap-4 items-center  py-4 mt-4">
                 <Image
                   source={require("../../assets/images/avatar.png")}
                   style={{ height: 48, width: 48 }}
@@ -147,9 +150,20 @@ function Home() {
                 </View>
               </View>
             </View>
-            <View className="mr-6 mt-4 relative">
-              <Octicons name="bell" size={28} color="white" />
-              <View className="bg-red-500 w-3 h-3 rounded-full absolute top-0 right-0 " />
+            <View className=" relative">
+              <Pressable
+                className="bg-white/10 p-2 rounded-full"
+                style={{ transform: [{ scale: 1 }] }}
+                onPress={() => {
+                  router.push("/notifications");
+                  console.log("notifs");
+                }}
+              >
+                <View>
+                  <Octicons name="bell" size={28} color="white" />
+                  <View className="bg-red-500 w-3 h-3 rounded-full absolute top-1 right-1 " />
+                </View>
+              </Pressable>
             </View>
           </View>
           <View className="px-6 mb-4">
@@ -162,6 +176,12 @@ function Home() {
                 className="flex-1 ml-2 text-base"
               />
             </View>
+          </View>
+          <View pointerEvents="none" className="absolute inset-0">
+            <Image
+              source={require("../../assets/images/Texture.png")}
+              className="bg-cover"
+            />
           </View>
         </View>
       </SafeAreaView>
@@ -176,6 +196,12 @@ function Home() {
           data={categories}
           renderItem={({ item }) => (
             <TouchableOpacity
+              onPress={() => {
+                router.push({
+                  pathname: "/[categoryId]",
+                  params: { categoryId: item.id.toString() },
+                });
+              }}
               activeOpacity={0.7}
               className="flex-row gap-1.5   border border-white/60 items-center justify-center  m-2 p-4 rounded-2xl shadow-md"
             >

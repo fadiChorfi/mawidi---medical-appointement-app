@@ -17,7 +17,7 @@ const screenOptions = {
 export default function Layout() {
   return (
     <Tabs screenOptions={screenOptions}>
-      <StatusBar backgroundColor="#3D3EB0" barStyle="light-content" />
+      <StatusBar translucent />
       <Tabs.Screen
         name="home"
         options={{

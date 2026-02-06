@@ -4,8 +4,8 @@ import "../global.css";
 
 export default function RootLayout() {
   return (
-    <Stack screenOptions={{ headerShown: false }} >
-      <StatusBar hidden />
+    <Stack screenOptions={{ headerShown: false }}>
+      <StatusBar translucent />
       <Stack.Screen
         name="(onboarding)/index"
         options={{ headerShown: false }}
@@ -14,6 +14,10 @@ export default function RootLayout() {
       <Stack.Screen
         name="doctor/[docID]"
         options={{ headerShown: true, title: "doctor" }}
+      />
+      <Stack.Screen
+        name="notifications"
+        options={{ headerShown: true, title: "Notifications", headerTitleAlign: "center" }}
       />
     </Stack>
   );
