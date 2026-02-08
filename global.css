@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @import "uniwind";
+
+@theme {
+  --color-primary: #20504b;
+  --color-secondary: #084b54;
+  --color-green: #0aa462;
+  --color-alert: #f44437;
+  --color-black-text: #0b0b0b;
+}
+
+:root {
+  --black-text: #0b0b0b;
+  --primary: #20504b;
+  --secondary: #084b54;
+  --green: #0aa462;
+  --alert: #f44437;
+}
