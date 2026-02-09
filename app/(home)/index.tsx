@@ -11,7 +11,7 @@ export default function Index() {
       <Button
         title="click me"
         onPress={() => {
-          router.push("/(auth)/log-in");
+          router.push("/(auth)/sign-up");
         }}
       />
     </View>

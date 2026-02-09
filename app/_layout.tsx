@@ -1,27 +1,34 @@
-import { AuthContext, AuthProvider } from "@/utils/auth-context";
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useContext, useEffect } from "react";
 import "../global.css";
 
 export default function RootLayout() {
-  const router = useRouter();
-  const authContext = useContext(AuthContext);
-  console.log("RootLayout - isLoggedIn:", authContext.isLoggedIn);
+  /* const { isLoggedIn } = useAuth();
+  const segments = useSegments();
+  const router = useRouter(); */
 
-  useEffect(() => {
-    if (authContext.isLoggedIn) {
-      router.replace("/(home)");
-    } else {
-      router.replace("/(auth)/log-in");
-    }
-  }, [authContext.isLoggedIn, router]);
+  /* useEffect(() => {
+    const timeout = setTimeout(() => {
+      const inAuthGroup = segments[0] === "(auth)";
+
+      if (!isLoggedIn && !inAuthGroup) {
+        router.replace("/(auth)/log-in");
+      } else if (isLoggedIn && inAuthGroup) {
+        router.replace("/(home)");
+      }
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, [isLoggedIn, segments, router]); */
+
   return (
-    <AuthProvider>
+    <>
       <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(auth)" />
         <Stack.Screen name="(home)" />
+        <Stack.Screen name="(onboarding)" />
       </Stack>
-    </AuthProvider>
+    </>
   );
 }

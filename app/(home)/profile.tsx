@@ -14,12 +14,10 @@ export default function Profile() {
           Status: {isLoggedIn ? "Logged In" : "Logged Out"}
         </Text>
 
-        <TouchableOpacity
-          onPress={logOut}
-          className="bg-red-500 px-8 py-4 rounded-2xl"
-        >
+        <TouchableOpacity onPress={logOut} className=" px-8 py-4 rounded-2xl">
           <Text className="text-white font-bold text-lg">Log Out</Text>
         </TouchableOpacity>
+        <Text className="text-white font-bold text-lg">Log Out</Text>
       </View>
     </SafeAreaView>
   );
