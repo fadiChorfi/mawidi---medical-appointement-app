@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 
@@ -6,6 +7,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const router = useRouter();
   return (
     <View className="flex-1 justify-center  bg-primary ">
       <View className="flex-1 items-center justify-center gap-6 bg-transparent relative ">
@@ -95,7 +97,7 @@ export default function SignUp() {
                   Sign Up
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={ ()=> router.push("/(auth)/sign-in")}>
                 <Text className="text-primary/85 text-center font-medium ">
                   Already have an account?{" "}
                   <Text className="font-bold">Sign In</Text>

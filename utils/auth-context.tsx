@@ -36,7 +36,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         },
         logOut: () => {
           setIsLoggedIn(false);
-          router.replace("/(auth)/log-in");
+          router.replace("/(auth)/sign-up");
         },
       }}
     >
