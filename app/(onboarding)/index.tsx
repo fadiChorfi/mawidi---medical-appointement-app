@@ -1,4 +1,6 @@
+import { useOnboarding } from "@/utils/onboarding-context";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React, { useRef } from "react";
 import {
   Animated,
@@ -53,14 +55,17 @@ export default function OnboardingIndex() {
   const animatedCurrent = useRef(Animated.divide(scrollX, width)).current;
   const scrollViewRef = useRef<any>(null);
   const currentPageRef = useRef(0);
+  const { completeOnboarding } = useOnboarding();
+  const router = useRouter();
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const nextPage = currentPageRef.current + 1;
     if (nextPage < pages.length) {
       scrollViewRef.current?.scrollTo({ x: width * nextPage, animated: true });
       currentPageRef.current = nextPage;
     } else {
-      console.log("Onboarding completed");
+      await completeOnboarding();
+      router.replace("/(auth)/sign-in");
     }
   };
 
@@ -88,10 +93,8 @@ export default function OnboardingIndex() {
         {pages.map((page, index) => (
           <View key={index} style={{ width, flex: 1 }}>
             <View className="flex-1 flex-col items-center pt-6">
-              {/* Image Section with Overlapping Card */}
               <View className="w-full items-center mb-8">
                 <View className="w-full relative items-center overflow-hidden">
-                  {/* Conditional Circle */}
                   {page.showCircle && page.circlePosition === "bottom" && (
                     <View className="absolute -bottom-12 w-72 h-72 rounded-full bg-primary border-2 border-white" />
                   )}
@@ -113,16 +116,19 @@ export default function OnboardingIndex() {
                     contentFit="contain"
                   />
                 </View>
-
-                {/* Circle underneath */}
               </View>
 
-              {/* Title and Description Section */}
               <View className="px-8 mt-12 items-center">
-                <Text className="text-3xl font-extrabold text-primary text-center mb-4 leading-tight">
+                <Text
+                  style={{ fontFamily: "Aeonik-Bold" }}
+                  className="text-3xl text-primary text-center mb-4 leading-tight"
+                >
                   {page.mainTitle}
                 </Text>
-                <Text className="text-base text-gray-600 font-normal text-center leading-7 px-2">
+                <Text
+                  style={{ fontFamily: "Aeonik-Regular" }}
+                  className="text-base text-gray-600 text-center leading-7 px-2"
+                >
                   {page.mainDescription}
                 </Text>
               </View>
@@ -131,7 +137,6 @@ export default function OnboardingIndex() {
         ))}
       </Animated.ScrollView>
 
-      {/* Page Indicator */}
       <View style={styles.pageIndicatorContainer}>
         <PageIndicator
           count={pages.length}
@@ -141,14 +146,18 @@ export default function OnboardingIndex() {
         />
       </View>
 
-      {/* Next Button */}
       <View className="absolute bottom-10 left-6 right-6">
         <TouchableOpacity
           onPress={handleNext}
           className="bg-primary rounded-2xl py-5 px-6 items-center justify-center shadow-lg flex-row"
           activeOpacity={0.8}
         >
-          <Text className="text-white text-lg font-bold mr-2">Next</Text>
+          <Text
+            style={{ fontFamily: "Aeonik-Bold" }}
+            className="text-white text-lg mr-2"
+          >
+            Next
+          </Text>
           <Text className="text-white text-xl">→</Text>
         </TouchableOpacity>
       </View>

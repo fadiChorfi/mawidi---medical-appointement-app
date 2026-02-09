@@ -8,6 +8,22 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
+
+  const handleSignIn = () => {
+    if (name && email && password && confirmPassword) {
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+      console.log("Signing up with:", {
+        name,
+        email,
+        password,
+        confirmPassword,
+      });
+      router.push("/(home)");
+    }
+  };
   return (
     <View className="flex-1 justify-center  bg-primary ">
       <View className="flex-1 items-center justify-center gap-6 bg-transparent relative ">
@@ -86,18 +102,20 @@ export default function SignUp() {
                   placeholder="Re-enter your password"
                   value={confirmPassword}
                   onChangeText={setConfirmPassword}
-                  secureTextEntry
                   className="border border-gray-300 rounded-lg px-4 py-3"
                 />
               </View>
             </View>
             <View>
-              <TouchableOpacity className="bg-primary rounded-lg py-3 mb-4">
+              <TouchableOpacity
+                onPress={() => handleSignIn()}
+                className="bg-primary rounded-lg py-3 mb-4"
+              >
                 <Text className="text-white text-center font-semibold text-lg">
                   Sign Up
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={ ()=> router.push("/(auth)/sign-in")}>
+              <TouchableOpacity onPress={() => router.push("/(auth)/sign-in")}>
                 <Text className="text-primary/85 text-center font-medium ">
                   Already have an account?{" "}
                   <Text className="font-bold">Sign In</Text>

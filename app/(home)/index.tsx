@@ -7,7 +7,9 @@ export default function Index() {
   return (
     <View className="flex-1 items-center bg-white ">
       <SafeAreaView edges={["top", "bottom"]} />
-      <Text>Home</Text>
+      <Text className="Text">Home</Text>
+      <Text className="font-family-bold ">Home</Text>
+
       <Button
         title="click me"
         onPress={() => {

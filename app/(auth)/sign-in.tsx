@@ -1,10 +1,19 @@
+import { AuthContext } from "@/utils/auth-context";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function SignIn() {
+  const { logIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSignIn = () => {
+    if (email && password) {
+      logIn();
+      router.push("/(home)");
+    }
+  };
   const router = useRouter();
   return (
     <View className="flex-1 justify-center  bg-primary ">
@@ -59,21 +68,24 @@ export default function SignIn() {
                   placeholder="Enter your password"
                   value={password}
                   onChangeText={setPassword}
-                  secureTextEntry
                   className="border border-gray-300 rounded-lg px-4 py-3"
                 />
               </View>
             </View>
             <View>
               <TouchableOpacity
-                onPress={() => router.push("/(auth)/sign-up")}
+                onPress={() => handleSignIn()}
                 className="bg-primary rounded-lg py-3 mb-4"
               >
                 <Text className="text-white text-center font-semibold text-lg">
                   Sign In
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => router.push("/(auth)/sign-up")}>
+              <TouchableOpacity
+                onPress={() => {
+                  router.push("/(auth)/sign-up");
+                }}
+              >
                 <Text className="text-black-text text-center font-medium ">
                   D&apos;ont have an account?{" "}
                   <Text className="font-bold text-primary ">Join Us</Text>

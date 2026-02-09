@@ -24,7 +24,7 @@ export function useAuth() {
 export function AuthProvider({ children }: PropsWithChildren) {
   const router = useRouter();
 
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
     <AuthContext.Provider

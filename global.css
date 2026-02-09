@@ -7,12 +7,27 @@
   --color-green: #0aa462;
   --color-alert: #f44437;
   --color-black-text: #0b0b0b;
+
+  --font-family-sans: Aeonik-Regular, system-ui, sans-serif;
+  --font-family-air: Aeonik-Air;
+  --font-family-thin: Aeonik-Thin;
+  --font-family-light: Aeonik-Light;
+  --font-family-regular: Aeonik-Regular;
+  --font-family-medium: Aeonik-Medium;
+  --font-family-bold: Aeonik-Bold;
+  --font-family-black: Aeonik-Black;
 }
 
 :root {
+  --font-family-sans: Aeonik-Regular, system-ui, sans-serif;
   --black-text: #0b0b0b;
   --primary: #20504b;
   --secondary: #084b54;
   --green: #0aa462;
   --alert: #f44437;
+}
+
+.Text {
+  font-family: var(--font-family-sans);
+  color: var(--black-text);
 }
