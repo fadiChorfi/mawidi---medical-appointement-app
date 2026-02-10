@@ -9,10 +9,10 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
 
   const handleSignIn = () => {
-    if (email && password) {
-      logIn();
-      router.push("/(home)");
-    }
+    /* if (email && password) {
+    } */
+    logIn();
+    router.push("/(home)");
   };
   const router = useRouter();
   return (
