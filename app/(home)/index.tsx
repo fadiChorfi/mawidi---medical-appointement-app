@@ -1,21 +1,21 @@
-import { router } from "expo-router";
-import React from "react";
-import { Button, Text, View } from "react-native";
+import { Header, SearchBar } from "@/components/home-page";
+import React, { useState } from "react";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
-  return (
-    <View className="flex-1 items-center bg-white ">
-      <SafeAreaView edges={["top", "bottom"]} />
-      <Text className="Text">Home</Text>
-      <Text className="font-family-bold ">Home</Text>
+  const [inputSearch, setInputSearch] = useState<string | null>(null);
 
-      <Button
-        title="click me"
-        onPress={() => {
-          router.push("/(auth)/sign-up");
-        }}
-      />
+  return (
+    <View className="flex-1 items-center bg-bg-secondary px-6">
+      <SafeAreaView edges={["top", "bottom"]} />
+      <View className="flex-col h-full w-full">
+        <Header userName="Sam" />
+        <SearchBar
+          value={inputSearch}
+          onChangeText={(text) => setInputSearch(text)}
+        />
+      </View>
     </View>
   );
 }

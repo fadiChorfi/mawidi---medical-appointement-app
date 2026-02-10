@@ -4,9 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Notifications() {
   return (
-    <View className="flex-1 items-center bg-white ">
+    <View className="flex-1 items-center bg-bg-secondary ">
       <SafeAreaView edges={["top", "bottom"]} />
-      <Text>Notifications</Text>
+      <Text></Text>
     </View>
   );
 }
