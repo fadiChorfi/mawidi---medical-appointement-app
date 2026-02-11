@@ -1,4 +1,5 @@
 import Feather from "@expo/vector-icons/Feather";
+import { Image } from "expo-image";
 import React, { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Animated, {
@@ -88,13 +89,15 @@ export default function SearchBar({
 
         {/* Filter Button - Outside */}
         <TouchableOpacity
-          className="bg-white  rounded-2xl px-4 py-3 flex-row items-center gap-2 shadow-sm"
+          className="bg-transparent absolute right-2 px-4 py-3 flex-row items-center gap-2 "
           activeOpacity={0.8}
           onPress={onFilterPress}
         >
-          <Text className="text-primary font-family-medium text-sm">
-            Filter
-          </Text>
+          <Image
+            source={require("@/assets/icons/filter.png")}
+            style={{ width: 20, height: 20 }}
+            className=" top-3 left-3 opacity-50"
+          />
         </TouchableOpacity>
       </View>
 

@@ -10,8 +10,7 @@ export default function HomeLayout() {
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: "#20504b",
-          tabBarStyle: { height: 70, paddingBottom: 15, paddingTop: 10 },
-          tabBarActiveBackgroundColor: "#E6F4F1",
+          tabBarStyle: { height: 70, paddingBottom: 15 },
         }}
       >
         <Tabs.Screen
