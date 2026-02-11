@@ -7,7 +7,13 @@ export default function HomeLayout() {
   return (
     <>
       <StatusBar style="dark" />
-      <Tabs screenOptions={{ tabBarActiveTintColor: "#20504b" }}>
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: "#20504b",
+          tabBarStyle: { height: 70, paddingBottom: 15, paddingTop: 10 },
+          tabBarActiveBackgroundColor: "#E6F4F1",
+        }}
+      >
         <Tabs.Screen
           name="index"
           options={{

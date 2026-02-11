@@ -65,15 +65,15 @@ export default function CategoriesSlide() {
           renderItem={({ item }) => (
             <TouchableOpacity
               key={item.id}
-              className="border border-green/40  ml-4 shadow-md flex flex-col items-center justify-center p-4 rounded-2xl "
-              style={{ width: 125 }}
+              className="shadow-xs border bg-white border-black-text/5  ml-4  px-4 flex flex-row gap-3 items-center justify-center p-2 rounded-2xl "
+              style={{ width: "auto", height: 60 }}
             >
               <Image
                 source={item.imageUrl}
-                style={{ width: 36, height: 36 }}
-                contentFit="contain"
+                style={{ width: 22, height: 22 }}
+                contentFit="cover"
               />
-              <Text className="text-sm font-family-regular text-black-text mt-2 text-center">
+              <Text className="text-sm font-family-regular text-black-text mt- text-center">
                 {item.name}
               </Text>
             </TouchableOpacity>
