@@ -29,13 +29,13 @@ export default function HomeLayout() {
           }}
         />
         <Tabs.Screen
-          name="notifications"
+          name="saved"
           options={{
-            title: "Notifications",
+            title: "saved",
             tabBarIcon: () => {
               return (
                 <Image
-                  source={require("@/assets/icons/notification-bing.png")}
+                  source={require("@/assets/icons/heart.png")}
                   style={{ width: 24, height: 24 }}
                 />
               );

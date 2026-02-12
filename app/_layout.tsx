@@ -19,12 +19,13 @@ function RootLayoutNav() {
       const inOnboarding = segments[0] === "(onboarding)";
       const inAuthGroup = segments[0] === "(auth)";
       const inHomeGroup = segments[0] === "(home)";
+      const isInDoctorPage = segments[0] === "doctor";
 
       if (!hasSeenOnboarding && !inOnboarding) {
         router.replace("/(onboarding)");
       } else if (hasSeenOnboarding && !isLoggedIn && !inAuthGroup) {
         router.replace("/(auth)/sign-in");
-      } else if (isLoggedIn && !inHomeGroup) {
+      } else if (isLoggedIn && !inHomeGroup && !isInDoctorPage) {
         router.replace("/(home)");
       }
     }, 100);
@@ -39,6 +40,7 @@ function RootLayoutNav() {
         <Stack.Screen name="(onboarding)" />
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(home)" />
+        <Stack.Screen name="[doctorId]" />
       </Stack>
     </>
   );

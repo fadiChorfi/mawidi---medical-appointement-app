@@ -2,6 +2,7 @@ import { doctors } from "@/data/doctors";
 import Feather from "@expo/vector-icons/Feather";
 import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React, { useMemo } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { FilterOptions } from "./FilterModal";
@@ -15,6 +16,7 @@ export default function ListDoctors({
   searchQuery = null,
   filters = { specialization: [], location: "", appointmentDate: null },
 }: ListDoctorsProps = {}) {
+  const router = useRouter();
   const filteredDoctors = useMemo(() => {
     let results = [...doctors];
 
@@ -77,6 +79,12 @@ export default function ListDoctors({
           data={filteredDoctors}
           renderItem={({ item }) => (
             <TouchableOpacity
+              onPress={() =>
+                router.push({
+                  pathname: "/doctor/[doctorId]",
+                  params: { doctorId: item.id },
+                })
+              }
               activeOpacity={0.7}
               className="w-full mb-4 bg-[white]  rounded-xl overflow-hidden flex-row  shadow-xs border border-black-text/5"
               style={{

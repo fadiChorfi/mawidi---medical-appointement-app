@@ -1,5 +1,6 @@
 import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
@@ -43,6 +44,7 @@ const categories: CategoiesSlideProps[] = [
 ];
 
 export default function CategoriesSlide() {
+  const router = useRouter();
   return (
     <View className="flex flex-col gap-4 w-full items-center   mt-6">
       <View className="flex-row items-baseline justify-between w-full px-6 ">
@@ -64,6 +66,12 @@ export default function CategoriesSlide() {
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
             <TouchableOpacity
+              onPress={() =>
+                router.push({
+                  pathname: "/specialization/[specializationId]",
+                  params: { specializationId: item.name.toLowerCase() },
+                })
+              }
               key={item.id}
               className="shadow-xs border bg-white border-black-text/5  ml-4  px-4 flex flex-row gap-3 items-center justify-center p-2 rounded-2xl "
               style={{ width: "auto", height: 60 }}

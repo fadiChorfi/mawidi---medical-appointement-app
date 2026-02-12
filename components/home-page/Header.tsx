@@ -32,11 +32,15 @@ export default function Header({
             </Text>
           </Text>
         </View>
-        <TouchableOpacity onPress={() => router.push("/(home)/notifications")}>
+        <TouchableOpacity
+          className="relative"
+          onPress={() => router.push("/(home)/notifications")}
+        >
           <Image
-            source={require("@/assets/icons/heart.png")}
+            source={require("@/assets/icons/bell.png")}
             style={{ height: 24, width: 24 }}
           />
+          <View className="absolute -top-0.5 left-3 bg-red-400 h-2 w-2 rounded-full border border-white " />
         </TouchableOpacity>
       </View>
     </View>

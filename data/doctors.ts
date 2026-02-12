@@ -134,3 +134,13 @@ export const doctors: CardDoctorsProps[] = [
     ],
   },
 ];
+
+/* const specializations: string[] = [
+  ...new Set(
+    doctors.flatMap((doctor) =>
+      Array.isArray(doctor.specialization)
+        ? doctor.specialization
+        : [doctor.specialization],
+    ),
+  ),
+]; */

@@ -151,6 +151,7 @@ const StaggeredPlaceholder: React.FC<{
 const AnimatedInput: React.FC<IAnimatedInput> &
   React.FunctionComponent<IAnimatedInput> = memo<IAnimatedInput>(
   ({
+    
     placeholders,
     animationInterval = 3000,
     value,
