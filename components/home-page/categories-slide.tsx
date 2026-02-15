@@ -52,7 +52,9 @@ export default function CategoriesSlide() {
           Categories
         </Text>
         <TouchableOpacity
-          onPress={() => console.log("this should navigate to see all page")}
+          onPress={() => {
+            router.push("/(public)/specialization/specialities");
+          }}
         >
           <Text className="text-md font-family-regular text-black-text ">
             See All
@@ -69,7 +71,7 @@ export default function CategoriesSlide() {
               onPress={() =>
                 router.push({
                   pathname: "/specialization/[specializationId]",
-                  params: { specializationId: item.name.toLowerCase() },
+                  params: { specializationId: item.name },
                 })
               }
               key={item.id}

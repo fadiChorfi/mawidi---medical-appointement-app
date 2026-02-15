@@ -32,6 +32,7 @@ export default function HomeLayout() {
           name="saved"
           options={{
             title: "saved",
+            headerShadowVisible: false,
             tabBarIcon: () => {
               return (
                 <Image

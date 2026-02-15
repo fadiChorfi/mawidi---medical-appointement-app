@@ -98,7 +98,6 @@ export default function BookingModal({
           style={{ maxHeight: "85%" }}
           onPress={(e) => e.stopPropagation()}
         >
-          {/* Header */}
           <View className="flex-row items-center justify-between p-6 border-b border-gray-200">
             <Text className="text-xl font-family-bold text-black-text">
               Booking Appointement

@@ -34,7 +34,7 @@ export default function Header({
         </View>
         <TouchableOpacity
           className="relative"
-          onPress={() => router.push("/(home)/notifications")}
+          onPress={() => router.push("/(public)/notification", )}
         >
           <Image
             source={require("@/assets/icons/bell.png")}

@@ -19,13 +19,13 @@ function RootLayoutNav() {
       const inOnboarding = segments[0] === "(onboarding)";
       const inAuthGroup = segments[0] === "(auth)";
       const inHomeGroup = segments[0] === "(home)";
-      const isInDoctorPage = segments[0] === "doctor";
+      const isInPublicRoute = segments[0] === "(public)";
 
       if (!hasSeenOnboarding && !inOnboarding) {
         router.replace("/(onboarding)");
       } else if (hasSeenOnboarding && !isLoggedIn && !inAuthGroup) {
         router.replace("/(auth)/sign-in");
-      } else if (isLoggedIn && !inHomeGroup && !isInDoctorPage) {
+      } else if (isLoggedIn && !inHomeGroup && !isInPublicRoute) {
         router.replace("/(home)");
       }
     }, 100);
@@ -41,6 +41,38 @@ function RootLayoutNav() {
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(home)" />
         <Stack.Screen name="[doctorId]" />
+        <Stack.Screen
+          name="(public)/specialization/[specializationId]"
+          options={{
+            headerShown: true,
+            headerTitleAlign: "center",
+            headerStyle: { backgroundColor: "#fafbfc" },
+            headerTintColor: "#20504b",
+            headerTitleStyle: { fontWeight: "bold" },
+          }}
+        />
+        <Stack.Screen
+          name="(public)/notification"
+          options={{
+            headerShown: true,
+            title: "Notifications",
+            headerTitleAlign: "center",
+            headerStyle: { backgroundColor: "#fafbfc" },
+            headerTintColor: "#20504b",
+            headerTitleStyle: { fontWeight: "bold" },
+          }}
+        />
+        <Stack.Screen
+          name="(public)/specialization/specialities"
+          options={{
+            headerShown: true,
+            title: "All Specialities",
+            headerTitleAlign: "center",
+            headerStyle: { backgroundColor: "#fafbfc" },
+            headerTintColor: "#20504b",
+            headerTitleStyle: { fontWeight: "bold" },
+          }}
+        />
       </Stack>
     </>
   );
